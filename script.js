@@ -2,6 +2,10 @@ const fishingBtn = document.getElementById('fishingBtn');
 const resultDiv = document.getElementById('result');
 let totalMoney = 0;
 let inventory = [];
+let rodLevel = 1;
+
+const moneyDisplay = document.getElementById('moneyDisplay');
+const sellAllBtn = document.getElementById('sellAllBtn');
 
 const catches = ['Окунь', 'Ботинок', 'Щука'];
 const fishSpots = [
@@ -19,9 +23,10 @@ function updateInventoryDisplay() {
     }
     let nameFish = '';
     for (let i = 0; i < inventory.length; i++) {
-        const oneFish = inventory [i];
+        const oneFish = inventory[i];
         nameFish = nameFish + oneFish.name + ', ';
     }
+    nameFish = nameFish.slice(0, -2);
     
     inventoryDisplay.textContent = `В инвентаре: ${nameFish}`;
 }
@@ -37,17 +42,37 @@ function GetRandomCatch() {
 function startFishing() {
     const fish = GetRandomCatch();
     inventory.push(fish);
-    totalMoney = totalMoney + fish.price;
-    resultDiv.textContent = `Вы поймали: ${fish.name}. +${fish.price} монет. Всего денег: ${totalMoney}`;
+    resultDiv.textContent = `Вы поймали: ${fish.name}. +${fish.price} монет.`;
     updateInventoryDisplay();
 }
 
-fishingBtn.addEventListener('click', startFishing);
+
 
 
 const showInventoryBtn = document.getElementById ('showInventoryBtn');
 
+
+
+function updateMoneyDisplay() {
+    moneyDisplay.textContent = `Денег: ${totalMoney}`;
+}
+
+function sellAllFish() {
+    let sum = 0;
+    for (let i = 0; i < inventory.length; i++) {
+        sum = inventory[i].price + sum;
+        
+    }
+    totalMoney = totalMoney + sum;
+    inventory = [];
+    updateMoneyDisplay()
+    updateInventoryDisplay()
+    
+}
+
+fishingBtn.addEventListener('click', startFishing);
 showInventoryBtn.addEventListener('click', updateInventoryDisplay);
+sellAllBtn.addEventListener('click', sellAllFish);
 
 
 
