@@ -4,10 +4,12 @@ let totalMoney = 0;
 let inventory = [];
 let rodLevel = 1;
 
+const rodDisplay = document.getElementById('rodDisplay');
+const upgradeRodBtn = document.getElementById('upgradeRodBtn');
+
 const moneyDisplay = document.getElementById('moneyDisplay');
 const sellAllBtn = document.getElementById('sellAllBtn');
 
-const catches = ['Окунь', 'Ботинок', 'Щука'];
 const fishSpots = [
     {name: 'Окунь', price: 10 },
     {name: 'Ботинок', price: 1 },
@@ -32,11 +34,41 @@ function updateInventoryDisplay() {
 }
 
 function GetRandomCatch() {
-    const randomIndex = Math.floor(Math.random() * catches.length);
+    let trashThreshold;
+    let pikeThreshold;
+
+    if (rodLevel === 1) {
+        trashThreshold = 0.6;
+        pikeThreshold = 0.9;
+    }
+
+    if (rodLevel === 2) {
+        trashThreshold = 0.4;
+        pikeThreshold = 0.75;
+    }
+
+    if (rodLevel === 3) {
+        trashThreshold = 0.2;
+        pikeThreshold = 0.6;
+    }
+
+    const rand = Math.random()
+
+    let selectedFish;
+
+    if ( rand < trashThreshold) {
+        selectedFish = fishSpots[1];
+    } else if (rand < pikeThreshold) {
+        selectedFish = fishSpots[2];
+    } else {
+        selectedFish = fishSpots[0];
+    }
+
     return {
-        name: catches[randomIndex],
-        price: fishSpots[randomIndex].price
-    };
+        name: selectedFish.name,
+        price: selectedFish.price
+    }
+
 }
 
 function startFishing() {
@@ -70,9 +102,26 @@ function sellAllFish() {
     
 }
 
+function upgradeRod() {
+    if (totalMoney >= 200) {
+        totalMoney = totalMoney - 200;
+        rodLevel = rodLevel + 1;
+        updateMoneyDisplay();
+        updateRodDisplay();
+        resultDiv.textContent = `Удочка улучшена до уровня ${rodLevel}!`;
+    } else {resultDiv.textContent = `Не хватает денег. Нужно 200 монет.`
+
+    }
+}
+
+function updateRodDisplay() {
+    rodDisplay.textContent = `Удочка: уровень ${rodLevel}`;
+}
+
 fishingBtn.addEventListener('click', startFishing);
 showInventoryBtn.addEventListener('click', updateInventoryDisplay);
 sellAllBtn.addEventListener('click', sellAllFish);
+upgradeRodBtn.addEventListener('click', upgradeRod);
 
 
 
