@@ -103,13 +103,16 @@ function sellAllFish() {
 }
 
 function upgradeRod() {
-    if (totalMoney >= 200) {
-        totalMoney = totalMoney - 200;
-        rodLevel = rodLevel + 1;
-        updateMoneyDisplay();
-        updateRodDisplay();
-        resultDiv.textContent = `Удочка улучшена до уровня ${rodLevel}!`;
-    } else {resultDiv.textContent = `Не хватает денег. Нужно 200 монет.`
+        const price = rodLevel * 200;
+        if (totalMoney >= price) {
+            totalMoney = totalMoney - price;
+            rodLevel = rodLevel + 1;
+            updateUpgradeButtonText();
+            updateMoneyDisplay();
+            updateRodDisplay();
+            resultDiv.textContent = `Удочка улучшена до уровня ${rodLevel}!`;
+        }
+        else {resultDiv.textContent = `Не хватает денег. Нужно ${price} монет.`
 
     }
 }
@@ -118,10 +121,18 @@ function updateRodDisplay() {
     rodDisplay.textContent = `Удочка: уровень ${rodLevel}`;
 }
 
+function updateUpgradeButtonText() {
+    price = rodLevel * 200
+    upgradeRodBtn.textContent = `Купить апгрейд (${price})`
+}
+
+
+
 fishingBtn.addEventListener('click', startFishing);
 showInventoryBtn.addEventListener('click', updateInventoryDisplay);
 sellAllBtn.addEventListener('click', sellAllFish);
 upgradeRodBtn.addEventListener('click', upgradeRod);
+updateUpgradeButtonText();
 
 
 

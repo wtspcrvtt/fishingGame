@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-board">
-        <button id="fishingBtn">Ловить рыбу</button>
+        <button id="fishingBtn" class="fishingBtn">Ловить рыбу</button>
         <div id="result"></div>
+        <div id="inventoryDisplay"></div>
+        <button id="showInventoryBtn" class="inventoryBtn">Показать инвентарь</button>
+    
+        <div id="moneyDisplay">Денег: 0</div>
+    
+        <button id="sellAllBtn" class="sellBtn">Продать всё</button>
+    
+        <div id="rodDisplay">Удочка: уровень 1</div>
+    
+        <button id="upgradeRodBtn" class="upgradeRodBtn">Купить апгрейд</button>
     </div>
 
-    <div id="inventoryDisplay"></div>
-    <button id="showInventoryBtn">Показать инвентарь</button>
-
-    <div id="moneyDisplay">Денег: 0</div>
-
-    <button id="sellAllBtn">Продать всё</button>
-
-    <div id="rodDisplay">Удочка: уровень 1</div>
-
-    <button id="upgradeRodBtn">Купить апгрейд (200 монет)</button>
 
     <script src="script.js"></script>
     
