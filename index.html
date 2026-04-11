@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fishing game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="name">Моя рыбалка</div>
     <div class="game-board">
-        <button id="fishingBtn" class="fishingBtn">Ловить рыбу</button>
-        <div id="result"></div>
-        <div id="inventoryDisplay"></div>
-        <button id="showInventoryBtn" class="inventoryBtn">Показать инвентарь</button>
+
+        <div class="left-column">
+            <button id="fishingBtn" class="fishingBtn">🎣 Ловить рыбу</button>
+            <div id="result"></div>
+            <div id="moneyDisplay">Денег: 0</div>
+            <div id="rodDisplay">Удочка: уровень 1</div>
+            <button id="upgradeRodBtn" class="upgradeRodBtn">Купить апгрейд</button>
+        </div>
+
+        <div class="right-column">
+            <h3>Инвентарь</h3>
+            <div id="inventoryDisplay"></div>
+            <button id="sellAllBtn" class="sellBtn">💰 Продать всё</button>
+        </div>
     
-        <div id="moneyDisplay">Денег: 0</div>
-    
-        <button id="sellAllBtn" class="sellBtn">Продать всё</button>
-    
-        <div id="rodDisplay">Удочка: уровень 1</div>
-    
-        <button id="upgradeRodBtn" class="upgradeRodBtn">Купить апгрейд</button>
     </div>
 
 

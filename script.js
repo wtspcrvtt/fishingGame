@@ -79,12 +79,6 @@ function startFishing() {
 }
 
 
-
-
-const showInventoryBtn = document.getElementById ('showInventoryBtn');
-
-
-
 function updateMoneyDisplay() {
     moneyDisplay.textContent = `Денег: ${totalMoney}`;
 }
@@ -123,16 +117,17 @@ function updateRodDisplay() {
 
 function updateUpgradeButtonText() {
     price = rodLevel * 200
-    upgradeRodBtn.textContent = `Купить апгрейд (${price})`
+    upgradeRodBtn.textContent = `⬆️ Купить апгрейд (${price})`
 }
 
 
 
 fishingBtn.addEventListener('click', startFishing);
-showInventoryBtn.addEventListener('click', updateInventoryDisplay);
 sellAllBtn.addEventListener('click', sellAllFish);
 upgradeRodBtn.addEventListener('click', upgradeRod);
 updateUpgradeButtonText();
+updateInventoryDisplay();
+resultDiv.textContent = 'Нажми "Ловить рыбу", чтобы начать';
 
 
 
